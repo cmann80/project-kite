@@ -8,6 +8,7 @@ const fs = require('fs');
 async function scrapePurchaseHistory(url) {
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
+  console.log($);
   const purchaseHistory = $('ul > li').map((_, el) => {
     const [date, ...rest] = $(el).text().split(': ');
     const [item, ...details] = rest.join(': ').split(' for ');
